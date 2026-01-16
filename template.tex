@@ -197,6 +197,8 @@
 \newcommand{\LetterRecipientAddressOne}[1]{\renewcommand{\LetterRecipientAddressOneValue}{#1}}
 \newcommand{\LetterRecipientAddressTwoValue}{}
 \newcommand{\LetterRecipientAddressTwo}[1]{\renewcommand{\LetterRecipientAddressTwoValue}{#1}}
+\newcommand{\LetterRecipientEmailValue}{}
+\newcommand{\LetterRecipientEmail}[1]{\renewcommand{\LetterRecipientEmailValue}{#1}}
 
 \newcommand{\LetterSenderValue}{}
 \newcommand{\LetterSender}[1]{\renewcommand{\LetterSenderValue}{#1}}
@@ -263,6 +265,7 @@
 \LetterRecipientTitle{Recipient Title}
 \LetterRecipientAddressOne{Recipient Institution}
 \LetterRecipientAddressTwo{Recipient Address Line 2}
+\LetterRecipientEmail{\href{mailto:<EMAIL>}{<EMAIL>}}
 
 \LetterSender{Jane Doe, PhD}
 \LetterSenderTitle{Associate Professor}
@@ -289,7 +292,8 @@
 \fontsize{9}{8.5}\selectfont
 \ifstrempty{\LetterRecipientTitleValue}{}{\LetterRecipientTitleValue \\}
 \ifstrempty{\LetterRecipientAddressOneValue}{}{\LetterRecipientAddressOneValue \\}
-\ifstrempty{\LetterRecipientAddressTwoValue}{}{\LetterRecipientAddressTwoValue}
+\ifstrempty{\LetterRecipientAddressTwoValue}{}{\LetterRecipientAddressTwoValue \\}
+\ifstrempty{\LetterRecipientEmailValue}{}{\LetterRecipientEmailValue}
 \end{adjustwidth}
 
 \vspace{10pt}
