@@ -31,3 +31,9 @@ jobs:
 
       - name: Build PDF
         run: latexmk -pdf -interaction=nonstopmode -halt-on-error -xelatex template.tex
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: letterhead-pdf
+          path: template.pdf
