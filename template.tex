@@ -188,6 +188,7 @@
 \DefineLocalizedString{Greeting}
 \DefineLocalizedString{Closing}
 \DefineLocalizedString{LetterSubject}
+\DefineLocalizedString{EndorsementLabel}
 
 \newcommand{\LetterRecipientValue}{}
 \newcommand{\LetterRecipient}[1]{\renewcommand{\LetterRecipientValue}{#1}}
@@ -216,6 +217,8 @@
 \newcommand{\LetterDatePlace}[1]{\renewcommand{\LetterDatePlaceValue}{#1}}
 \newcommand{\LetterSignatureValue}{}
 \newcommand{\LetterSignature}[1]{\renewcommand{\LetterSignatureValue}{#1}}
+\newcommand{\LetterEndorserValue}{}
+\newcommand{\LetterEndorser}[1]{\renewcommand{\LetterEndorserValue}{#1}}
 \newcommand{\LetterCity}{}
 \newcommand{\LetterDateISOValue}{}
 \newcommand{\LetterDateISO}[1]{\renewcommand{\LetterDateISOValue}{#1}}
@@ -260,6 +263,8 @@
 \Greeting[fr]{Chers membres du comit\'e,}
 \Closing[en]{Sincerely,}
 \Closing[fr]{Sinc\`erement,}
+\EndorsementLabel[en]{Approved and endorsed by:}
+\EndorsementLabel[fr]{Approuv\'e et valid\'e par :}
 
 \LetterRecipient{Recipient Name}
 \LetterRecipientTitle{Recipient Title}
@@ -275,6 +280,7 @@
 \LetterSenderPhone{+41 58 606 XX YY}
 \LetterDatePlace{Sion, \LetterDate}
 % \LetterSignature{Dr. Jane Doe}
+% \LetterEndorser{Dr. Alex Supervisor}
 
 %----------------------------------------------------------------------------------------
 
@@ -347,10 +353,26 @@ venis moditi digentis min et latur suntiis esti id que pario dolut late sus.
 % To include a signature, place signature.png and set \showsignaturetrue; CI builds run without a signature file.
 \newif\ifshowsignature
 \showsignaturefalse
-\ifshowsignature
-  \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png}}{}
-\fi
 
-\ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}
+\ifstrempty{\LetterEndorserValue}{%
+  \ifshowsignature
+    \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png}}{}
+  \fi
+  \ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}%
+}{%
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+    \begin{minipage}[t]{0.45\textwidth}
+      \ifshowsignature
+        \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png}}{}
+      \fi
+      \ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}
+    \end{minipage}
+    &
+    \begin{minipage}[t]{0.45\textwidth}
+      \IfLocalizedStringDefined{EndorsementLabel}{\EndorsementLabel \\}{}
+      \LetterEndorserValue
+    \end{minipage}
+  \end{tabular*}
+}
 
 \end{document}
