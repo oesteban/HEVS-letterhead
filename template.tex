@@ -221,7 +221,7 @@
 \newcommand{\LetterDateISO}[1]{\renewcommand{\LetterDateISOValue}{#1}}
 \makeatletter
 \providecommand{\DTMifdatestyle}[3]{%
-  \@ifundefined{DTM#1monthname}{#3}{#2}%
+  \@ifundefined{DTMdatestyle@#1}{#3}{#2}%
 }
 \makeatother
 \DTMifdatestyle{english}{%
