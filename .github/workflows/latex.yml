@@ -1,0 +1,33 @@
+name: LaTeX
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Local dependencies: texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
+      # texlive-latex-extra texlive-xetex latexmk chktex inkscape
+      - name: Install LaTeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-fonts-recommended \
+            texlive-latex-extra \
+            texlive-xetex \
+            latexmk \
+            chktex \
+            inkscape
+
+      - name: Lint with chktex
+        run: chktex -q -n1 -n2 -n8 -n24 -n26 template.tex
+
+      - name: Build PDF
+        run: latexmk -pdf -interaction=nonstopmode -halt-on-error -xelatex template.tex

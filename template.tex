@@ -1,0 +1,352 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HES-SO Valais-Wallis (HEVS) / School of Engineering (HEI)
+% LaTeX Template
+% Version 1.0 (January 16, 2026)
+%
+% Authors: Oscar Esteban
+% (oscar.esteban@hes-so.ch)
+%
+% License:
+% CC0 1.0 Universal (CC0 1.0) Public Domain Dedication
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{article}
+\usepackage{afterpage}
+\usepackage[
+	a4paper, % Paper size
+	top=3.4cm, % Top margin
+	bottom=2.9cm, % Bottom margin
+	left=2.2cm, % Left margin
+	right=2.1cm, % Right margin
+	headheight=2.3cm,
+	headsep=0.5cm,
+	% showframe
+]{geometry}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\definecolor{pink_hei}{HTML}{DC0069}
+
+\setlength{\parindent}{0pt} % Paragraph indentation
+\setlength{\parskip}{1em} % Vertical space between paragraphs
+
+\usepackage{svg}
+\usepackage{graphicx} % Required for including images
+
+% Set the document language at compile time, e.g.:
+%   pdflatex "\def\documentlanguage{fr}\input{template.tex}"
+%   latexmk -xelatex -use-make -jobname=letter -latexoption="\\def\\documentlanguage{en}" template.tex
+\providecommand{\documentlanguage}{english}
+
+% Toggle ISC logo (default off). Enable via:
+%   latexmk -xelatex -use-make -latexoption="\\showisclogotrue" template.tex
+%   pdflatex "\showisclogotrue\input{template.tex}"
+\newif\ifshowisclogo
+\showisclogotrue
+
+\usepackage{fontspec}
+\setsansfont{Arimo}[%
+    ExternalLocation=fonts/,
+    Extension=.ttf,
+    UprightFont=Arimo-Regular,
+    BoldFont=Arimo-Bold,
+    ItalicFont=Arimo-Italic,
+    BoldItalicFont=Arimo-BoldItalic,
+]
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{etoolbox}
+\usepackage{xparse}
+\usepackage{polyglossia}
+\ifstrequal{\documentlanguage}{en}{\def\documentlanguage{english}}{}
+\ifstrequal{\documentlanguage}{fr}{\def\documentlanguage{french}}{}
+\setdefaultlanguage{\documentlanguage}
+\setotherlanguage{french}
+
+\usepackage[useregional]{datetime2}
+
+\hypersetup{%
+  colorlinks=true,% hyperlinks will be coloured
+  linkcolor=pink_hei,
+  urlcolor=pink_hei,
+  linkbordercolor=pink_hei,
+}
+
+\usepackage{fancyhdr} % Required for customizing headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{%
+\begin{tabular}{@{}l@{}}
+\includegraphics[height=1.5cm]{letterhead/EN_HEI}
+\end{tabular}
+}
+\rhead{%
+\ifshowisclogo
+\begin{tabular}{@{}r@{}}
+\includegraphics[height=1.0cm]{letterhead/isc_logo.png}
+\end{tabular}
+\fi
+}
+\renewcommand{\headrulewidth}{0pt}
+\lfoot{%
+\fontsize{7}{7.2}\selectfont
+\begin{tabular*}{\textwidth}{@{}p{0.5\textwidth}@{\extracolsep{\fill}}r@{}}
+\textcolor{gray}{\textbf{HES-SO Valais-Wallis} \textbullet\ rue de l'Industrie 23 \textbullet\ 1950 Sion \textbullet\ +41 58 606 85 23 \textbullet\ hei@hevs.ch \textbullet\ www.hevs.ch/hei} &
+\adjustbox{valign=c}{\includegraphics[width=5cm,keepaspectratio]{letterhead/swissuniversities_logo_gray}}%
+\hspace{1cm}%
+\adjustbox{valign=c}{\includegraphics[height=1.2cm,keepaspectratio]{letterhead/valaisexcellence_logo_gray}}
+\end{tabular*}
+}
+% \fancyfootoffset[lh]{2.2cm}
+% \fancyheadoffset[lh]{2.4cm}
+
+\fancypagestyle{fancyfirst}{
+\fancyhf{}
+\lhead{%
+\begin{tabular}{@{}l@{}}
+\includegraphics[height=1.5cm]{letterhead/EN_HEI}
+\end{tabular}
+}
+\rhead{%
+\ifshowisclogo
+\begin{tabular}{@{}r@{}}
+\includegraphics[height=1.0cm]{letterhead/isc_logo.png}
+\end{tabular}
+\fi
+}
+\renewcommand{\headrulewidth}{0pt}
+\lfoot{%
+\fontsize{7}{7.2}\selectfont
+\begin{tabular*}{\textwidth}{@{}p{0.5\textwidth}@{\extracolsep{\fill}}r@{}}
+\textcolor{gray}{
+  \textbf{HES-SO Valais-Wallis} \textbullet\ rue de l'Industrie 23 \textbullet\ 1950 Sion \newline 
+  +41 58 606 85 23 \textbullet\ hei@hevs.ch \textbullet\ www.hevs.ch/hei
+} &
+\adjustbox{valign=c}{\includegraphics[width=4cm,keepaspectratio]{letterhead/swissuniversities_logo_gray}}%
+\hspace{1cm}%
+\adjustbox{valign=c}{\includegraphics[height=1.2cm,keepaspectratio]{letterhead/valaisexcellence_logo_gray}}
+\end{tabular*}
+}
+% \fancyfootoffset[lh]{2.2cm}
+% \fancyheadoffset[lh]{2.4cm}
+}
+
+\usepackage[strict]{changepage}
+
+%----------------------------------------------------------------------------------------
+%	TRANSLATABLE STRINGS
+%----------------------------------------------------------------------------------------
+
+\newcommand{\DefineLocalizedString}[1]{%
+  \expandafter\newcommand\csname #1@set\endcsname[2]{%
+    \expandafter\gdef\csname #1@##1\endcsname{##2}%
+    \ifstrequal{##1}{en}{%
+      \expandafter\gdef\csname #1@english\endcsname{##2}%
+    }{}%
+    \ifstrequal{##1}{fr}{%
+      \expandafter\gdef\csname #1@french\endcsname{##2}%
+    }{}%
+  }%
+  \expandafter\newcommand\csname #1@get\endcsname{%
+    \ifcsname #1@\documentlanguage\endcsname
+      \csname #1@\documentlanguage\endcsname
+    \fi
+  }%
+  \expandafter\NewDocumentCommand\csname #1\endcsname{o g}{%
+    \IfNoValueTF{##1}{%
+      \csname #1@get\endcsname
+    }{%
+      \IfNoValueTF{##2}{}{%
+        \csname #1@set\endcsname{##1}{##2}%
+      }%
+    }%
+  }%
+}
+
+\newcommand{\IfLocalizedStringDefined}[3]{%
+  \ifcsname #1@\documentlanguage\endcsname
+    \ifstrempty{\csname #1@\documentlanguage\endcsname}{%
+      #3%
+    }{%
+      #2%
+    }%
+  \else
+    #3%
+  \fi
+}
+
+\DefineLocalizedString{LetterTitle}
+\DefineLocalizedString{LetterSubtitle}
+\DefineLocalizedString{Greeting}
+\DefineLocalizedString{Closing}
+\DefineLocalizedString{LetterSubject}
+
+\newcommand{\LetterRecipientValue}{}
+\newcommand{\LetterRecipient}[1]{\renewcommand{\LetterRecipientValue}{#1}}
+\newcommand{\LetterRecipientTitleValue}{}
+\newcommand{\LetterRecipientTitle}[1]{\renewcommand{\LetterRecipientTitleValue}{#1}}
+\newcommand{\LetterRecipientAddressOneValue}{}
+\newcommand{\LetterRecipientAddressOne}[1]{\renewcommand{\LetterRecipientAddressOneValue}{#1}}
+\newcommand{\LetterRecipientAddressTwoValue}{}
+\newcommand{\LetterRecipientAddressTwo}[1]{\renewcommand{\LetterRecipientAddressTwoValue}{#1}}
+
+\newcommand{\LetterSenderValue}{}
+\newcommand{\LetterSender}[1]{\renewcommand{\LetterSenderValue}{#1}}
+\newcommand{\LetterSenderTitleValue}{}
+\newcommand{\LetterSenderTitle}[1]{\renewcommand{\LetterSenderTitleValue}{#1}}
+\newcommand{\LetterSenderLabValue}{}
+\newcommand{\LetterSenderLab}[1]{\renewcommand{\LetterSenderLabValue}{#1}}
+\newcommand{\LetterSenderSchoolValue}{}
+\newcommand{\LetterSenderSchool}[1]{\renewcommand{\LetterSenderSchoolValue}{#1}}
+\newcommand{\LetterSenderEmailValue}{}
+\newcommand{\LetterSenderEmail}[1]{\renewcommand{\LetterSenderEmailValue}{#1}}
+\newcommand{\LetterSenderPhoneValue}{}
+\newcommand{\LetterSenderPhone}[1]{\renewcommand{\LetterSenderPhoneValue}{#1}}
+\newcommand{\LetterDatePlaceValue}{}
+\newcommand{\LetterDatePlace}[1]{\renewcommand{\LetterDatePlaceValue}{#1}}
+\newcommand{\LetterSignatureValue}{}
+\newcommand{\LetterSignature}[1]{\renewcommand{\LetterSignatureValue}{#1}}
+\newcommand{\LetterCity}{}
+\newcommand{\LetterDateISOValue}{}
+\newcommand{\LetterDateISO}[1]{\renewcommand{\LetterDateISOValue}{#1}}
+\makeatletter
+\providecommand{\DTMifdatestyle}[3]{%
+  \@ifundefined{DTM#1monthname}{#3}{#2}%
+}
+\makeatother
+\DTMifdatestyle{english}{%
+  \DTMrenewdatestyle{english}{%
+    \renewcommand{\DTMdisplaydate}[4]{%
+      \DTMenglishmonthname{##2} ##3, ##1%
+    }%
+    \renewcommand{\DTMDisplaydate}[4]{%
+      \DTMenglishmonthname{##2} ##3, ##1%
+    }%
+  }%
+}{%
+  \DTMnewdatestyle{english}{%
+    \renewcommand{\DTMdisplaydate}[4]{%
+      \DTMenglishmonthname{##2} ##3, ##1%
+    }%
+    \renewcommand{\DTMDisplaydate}[4]{%
+      \DTMenglishmonthname{##2} ##3, ##1%
+    }%
+  }%
+}
+\newcommand{\LetterDate}{%
+  \iflanguage{french}{\DTMsetdatestyle{french}}{\DTMsetdatestyle{english}}%
+  \ifdefempty{\LetterDateISOValue}{\DTMtoday}{\DTMdate{\LetterDateISOValue}}%
+}
+
+%----------------------------------------------------------------------------------------
+%	USAGE (EDIT THESE FIELDS)
+%----------------------------------------------------------------------------------------
+% \LetterDateISO{2025-07-29}
+\LetterTitle[en]{Letter title}
+\LetterTitle[fr]{Lettre de soutien}
+\LetterSubtitle[en]{Subject of the letter in English}
+\LetterSubtitle[fr]{Sujet de la lettre en fran\c cais}
+\Greeting[en]{Dear Committee Members,}
+\Greeting[fr]{Chers membres du comit\'e,}
+\Closing[en]{Sincerely,}
+\Closing[fr]{Sinc\`erement,}
+
+\LetterRecipient{Recipient Name}
+\LetterRecipientTitle{Recipient Title}
+\LetterRecipientAddressOne{Recipient Institution}
+\LetterRecipientAddressTwo{Recipient Address Line 2}
+
+\LetterSender{Jane Doe, PhD}
+\LetterSenderTitle{Associate Professor}
+\LetterSenderLab{Head of Doe Lab}
+\LetterSenderSchool{School of Engineering, HES-SO Valais-Wallis}
+\LetterSenderEmail{\href{mailto:jane.doe@hes-so.ch}{jane.doe@hes-so.ch}}
+\LetterSenderPhone{+41 58 606 XX YY}
+\LetterDatePlace{Sion, \LetterDate}
+% \LetterSignature{Dr. Jane Doe}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\thispagestyle{fancyfirst}
+\afterpage{\clearpage}
+
+%----------------------------------------------------------------------------------------
+%	YOUR NAME AND CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\begin{adjustwidth}{11cm}{0.0cm}
+\ifstrempty{\LetterRecipientValue}{}{\textbf{\LetterRecipientValue} \\}
+\fontsize{9}{8.5}\selectfont
+\ifstrempty{\LetterRecipientTitleValue}{}{\LetterRecipientTitleValue \\}
+\ifstrempty{\LetterRecipientAddressOneValue}{}{\LetterRecipientAddressOneValue \\}
+\ifstrempty{\LetterRecipientAddressTwoValue}{}{\LetterRecipientAddressTwoValue}
+\end{adjustwidth}
+
+\vspace{10pt}
+\IfLocalizedStringDefined{LetterTitle}{\LetterTitle \\}{}
+\IfLocalizedStringDefined{LetterSubtitle}{\textbf{\LetterSubtitle}}{}
+\vspace{15pt}
+
+\begin{adjustwidth}{0cm}{9cm}
+\ifstrempty{\LetterSenderValue}{}{\textbf{\LetterSenderValue} \\}
+\fontsize{9}{8.5}\selectfont
+\ifstrempty{\LetterSenderTitleValue}{}{\LetterSenderTitleValue \\}
+\ifstrempty{\LetterSenderLabValue}{}{\LetterSenderLabValue \\}
+\ifstrempty{\LetterSenderSchoolValue}{}{\LetterSenderSchoolValue \\}
+\ifstrempty{\LetterSenderEmailValue}{}{\LetterSenderEmailValue \\}
+\ifstrempty{\LetterSenderPhoneValue}{}{\LetterSenderPhoneValue}
+\end{adjustwidth}
+
+\ifstrempty{\LetterDatePlaceValue}{}{{\raggedleft \LetterDatePlaceValue \par}}
+
+\bigskip % Vertical whitespace
+
+\fontsize{11}{15.5}\selectfont
+
+\ifstrempty{\Greeting}{}{\Greeting}
+
+Ipiendelest rem. Ut volorrum faciis a sum fugia dolo od ut peris dolupta vel ilit, unt deligna temque
+cuptatum quiatem exceari tionet que dolore pliquos et escid ma sunt fugit quunte cuscime poria que dem.
+Il int, untotatibea natur antis delis ilit explat.
+
+Omnis sequias pictate reprati vitior rem volupta volorit vel idis et rem et veliam eate omnis evenector
+archictios que voluptas aut estrum assi sit vitae vent aut officia dendipi cient.
+
+Ped molo demollabo. Nem faciend itatquatisi iliquiderum et, voluptatur? Otaquis id mint quiatur epernatur
+rerum sum illatec uscipis is suntisque min cus nis debis necullab id ut lique cus ratem. Olorupta cus
+peritem et apedi velibus andania es et volupta essequi core sin comni dolupis adisciis adi doluptatem fugit
+aut re velitiis ipictior sit pra delland amuscia commo et autatio eum hictat maximagni incto tem as aute
+pratur, ant, te porum faccuptatis alic tet et faciet aut latium fuga. Ut laborem nullibusam, aute venda incte
+expelecupic.
+
+To eiur, in num volessedit pliquaturit, as sim lignam et am, arcima alicid et odit et ullorro es cum, estrum,
+elendae ceatus, con explicia cus amendae sapitiis am, is perferem quam qui arum apitae. Et iunt quaecte
+digente sam faccum endit eturescia aut liquam inctiam, estist lam est, conemquae poribusam explab
+ipienda consequ ianima dendebis dolorerunt ad ut litasimintur remquam la voloresti voluptasi odistotamet
+mos velland ellacerum quati quo con cor.
+
+Adicabo. Is millitatur arum qui con non niminiento eos milit qui soluptus sant velest molest, sed eos et plit
+venis moditi digentis min et latur suntiis esti id que pario dolut late sus.
+
+\ifstrempty{\Closing}{}{\Closing}
+
+% To include a signature, place firma.png and set \showsignaturetrue; CI builds run without a signature file.
+\newif\ifshowsignature
+\showsignaturefalse
+\ifshowsignature
+  \IfFileExists{firma.png}{\includegraphics[width=2.5cm]{firma.png}}{}
+\fi
+
+\ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}
+
+\end{document}
