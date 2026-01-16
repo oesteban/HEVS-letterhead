@@ -344,11 +344,11 @@ venis moditi digentis min et latur suntiis esti id que pario dolut late sus.
 
 \ifstrempty{\Closing}{}{\Closing}
 
-% To include a signature, place firma.png and set \showsignaturetrue; CI builds run without a signature file.
+% To include a signature, place signature.png and set \showsignaturetrue; CI builds run without a signature file.
 \newif\ifshowsignature
 \showsignaturefalse
 \ifshowsignature
-  \IfFileExists{firma.png}{\includegraphics[width=2.5cm]{firma.png}}{}
+  \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png}}{}
 \fi
 
 \ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}
