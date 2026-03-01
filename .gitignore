@@ -1,7 +1,8 @@
-template.aux
-template.fdb_latexmk
-template.fls
-template.log
-template.out
-template.pdf
-template.xdv
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
+*.xdv
+signature.png

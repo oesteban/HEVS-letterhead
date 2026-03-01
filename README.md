@@ -17,7 +17,7 @@ Then run:
 
 ```sh
 chktex -q -n1 -n2 -n8 -n24 -n26 template.tex
-latexmk -pdf -interaction=nonstopmode -halt-on-error -xelatex -shell-escape template.tex
+latexmk -pdf -interaction=nonstopmode -halt-on-error -xelatex -shell-escape -jobname=letter template.tex
 ```
 
 To enable the ISC logo in the header, toggle it in the TeX source or pass it on the command line:
