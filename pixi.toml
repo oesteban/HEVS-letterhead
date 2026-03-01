@@ -1,0 +1,21 @@
+[project]
+name = "hevs-letterhead"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]
+
+[dependencies]
+python = ">=3.11"
+jinja2 = "*"
+pyyaml = "*"
+
+[target.linux-64.dependencies]
+texlive-core = "*"
+latexmk = "*"
+chktex = "*"
+
+[tasks]
+render = "python render.py"
+lint = { cmd = "chktex -q -n1 -n2 -n8 -n24 -n26 letter.tex", depends-on = ["render"] }
+build = { cmd = "latexmk -pdf -interaction=nonstopmode -halt-on-error -xelatex -shell-escape letter.tex", depends-on = ["render"] }
+clean = "latexmk -C letter.tex; rm -f letter.tex"
+all = { depends-on = ["lint", "build"] }

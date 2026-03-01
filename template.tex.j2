@@ -44,13 +44,17 @@
 % Set the document language at compile time, e.g.:
 %   pdflatex "\def\documentlanguage{fr}\input{template.tex}"
 %   latexmk -xelatex -use-make -jobname=letter -latexoption="\\def\\documentlanguage{en}" template.tex
-\providecommand{\documentlanguage}{english}
+\providecommand{\documentlanguage}{<< language >>}
 
 % Toggle ISC logo (default off). Enable via:
 %   latexmk -xelatex -use-make -latexoption="\\showisclogotrue" template.tex
 %   pdflatex "\showisclogotrue\input{template.tex}"
 \newif\ifshowisclogo
+<% if show_isc_logo %>
 \showisclogotrue
+<% else %>
+\showisclogofalse
+<% endif %>
 
 \usepackage{fontspec}
 \setsansfont{Arimo}[%
@@ -254,33 +258,39 @@
 %----------------------------------------------------------------------------------------
 %	USAGE (EDIT THESE FIELDS)
 %----------------------------------------------------------------------------------------
-% \LetterDateISO{2025-07-29}
-\LetterTitle[en]{Letter title}
-\LetterTitle[fr]{Lettre de soutien}
-\LetterSubtitle[en]{Subject of the letter in English}
-\LetterSubtitle[fr]{Sujet de la lettre en fran\c cais}
-\Greeting[en]{Dear Committee Members,}
-\Greeting[fr]{Chers membres du comit\'e,}
-\Closing[en]{Sincerely,}
-\Closing[fr]{Sinc\`erement,}
-\EndorsementLabel[en]{Approved and endorsed by:}
-\EndorsementLabel[fr]{Approuv\'e et valid\'e par :}
+<% if date_iso %>
+\LetterDateISO{<< date_iso >>}
+<% endif %>
+\LetterTitle[en]{<< title.en >>}
+\LetterTitle[fr]{<< title.fr >>}
+\LetterSubtitle[en]{<< subtitle.en >>}
+\LetterSubtitle[fr]{<< subtitle.fr >>}
+\Greeting[en]{<< greeting.en >>}
+\Greeting[fr]{<< greeting.fr >>}
+\Closing[en]{<< closing.en >>}
+\Closing[fr]{<< closing.fr >>}
+\EndorsementLabel[en]{<< endorsement_label.en >>}
+\EndorsementLabel[fr]{<< endorsement_label.fr >>}
 
-\LetterRecipient{Recipient Name}
-\LetterRecipientTitle{Recipient Title}
-\LetterRecipientAddressOne{Recipient Institution}
-\LetterRecipientAddressTwo{Recipient Address Line 2}
-\LetterRecipientEmail{\href{mailto:<EMAIL>}{<EMAIL>}}
+\LetterRecipient{<< recipient.name >>}
+\LetterRecipientTitle{<< recipient.title >>}
+\LetterRecipientAddressOne{<< recipient.address_line1 >>}
+\LetterRecipientAddressTwo{<< recipient.address_line2 >>}
+\LetterRecipientEmail{\href{mailto:<< recipient.email >>}{<< recipient.email >>}}
 
-\LetterSender{Jane Doe, PhD}
-\LetterSenderTitle{Associate Professor}
-\LetterSenderLab{Head of Doe Lab}
-\LetterSenderSchool{School of Engineering, HES-SO Valais-Wallis}
-\LetterSenderEmail{\href{mailto:jane.doe@hes-so.ch}{jane.doe@hes-so.ch}}
-\LetterSenderPhone{+41 58 606 XX YY}
-\LetterDatePlace{Sion, \LetterDate}
-% \LetterSignature{Dr. Jane Doe}
-% \LetterEndorser{Dr. Alex Supervisor}
+\LetterSender{<< sender.name >>}
+\LetterSenderTitle{<< sender.title >>}
+\LetterSenderLab{<< sender.lab >>}
+\LetterSenderSchool{<< sender.school >>}
+\LetterSenderEmail{\href{mailto:<< sender.email >>}{<< sender.email >>}}
+\LetterSenderPhone{<< sender.phone >>}
+\LetterDatePlace{<< city >>, \LetterDate}
+<% if signature %>
+\LetterSignature{<< signature >>}
+<% endif %>
+<% if endorser %>
+\LetterEndorser{<< endorser >>}
+<% endif %>
 
 %----------------------------------------------------------------------------------------
 
@@ -325,34 +335,17 @@
 
 \ifstrempty{\Greeting}{}{\Greeting}
 
-Ipiendelest rem. Ut volorrum faciis a sum fugia dolo od ut peris dolupta vel ilit, unt deligna temque
-cuptatum quiatem exceari tionet que dolore pliquos et escid ma sunt fugit quunte cuscime poria que dem.
-Il int, untotatibea natur antis delis ilit explat.
-
-Omnis sequias pictate reprati vitior rem volupta volorit vel idis et rem et veliam eate omnis evenector
-archictios que voluptas aut estrum assi sit vitae vent aut officia dendipi cient.
-
-Ped molo demollabo. Nem faciend itatquatisi iliquiderum et, voluptatur? Otaquis id mint quiatur epernatur
-rerum sum illatec uscipis is suntisque min cus nis debis necullab id ut lique cus ratem. Olorupta cus
-peritem et apedi velibus andania es et volupta essequi core sin comni dolupis adisciis adi doluptatem fugit
-aut re velitiis ipictior sit pra delland amuscia commo et autatio eum hictat maximagni incto tem as aute
-pratur, ant, te porum faccuptatis alic tet et faciet aut latium fuga. Ut laborem nullibusam, aute venda incte
-expelecupic.
-
-To eiur, in num volessedit pliquaturit, as sim lignam et am, arcima alicid et odit et ullorro es cum, estrum,
-elendae ceatus, con explicia cus amendae sapitiis am, is perferem quam qui arum apitae. Et iunt quaecte
-digente sam faccum endit eturescia aut liquam inctiam, estist lam est, conemquae poribusam explab
-ipienda consequ ianima dendebis dolorerunt ad ut litasimintur remquam la voloresti voluptasi odistotamet
-mos velland ellacerum quati quo con cor.
-
-Adicabo. Is millitatur arum qui con non niminiento eos milit qui soluptus sant velest molest, sed eos et plit
-venis moditi digentis min et latur suntiis esti id que pario dolut late sus.
+<< body >>
 
 \ifstrempty{\Closing}{}{\Closing}
 
 % To include a signature, place signature.png and set \showsignaturetrue; CI builds run without a signature file.
 \newif\ifshowsignature
+<% if show_signature %>
+\showsignaturetrue
+<% else %>
 \showsignaturefalse
+<% endif %>
 
 \ifstrempty{\LetterEndorserValue}{%
   \ifshowsignature

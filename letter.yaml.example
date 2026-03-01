@@ -1,0 +1,58 @@
+# ---- Configuration ----
+language: english          # "english" or "french"
+show_isc_logo: true        # Show ISC logo in header
+show_signature: false      # Include signature.png (place file in project root)
+
+# ---- Date and location ----
+# date_iso: "2025-07-29"   # Omit to use today's date
+city: Sion
+
+# ---- Localized strings (provide both en and fr) ----
+title:
+  en: "Letter title"
+  fr: "Titre de la lettre"
+
+subtitle:
+  en: "Subject of the letter in English"
+  fr: "Sujet de la lettre en français"
+
+greeting:
+  en: "Dear Committee Members,"
+  fr: "Chers membres du comité,"
+
+closing:
+  en: "Sincerely,"
+  fr: "Sincèrement,"
+
+# endorsement_label:          # Uncomment to override defaults
+#   en: "Approved and endorsed by:"
+#   fr: "Approuvé et validé par :"
+
+# ---- Recipient ----
+recipient:
+  name: "Recipient Name"
+  title: "Recipient Title"
+  address_line1: "Recipient Institution"
+  address_line2: "Recipient Address Line 2"
+  email: "recipient@example.com"
+
+# ---- Sender ----
+sender:
+  name: "Jane Doe, PhD"
+  title: "Associate Professor"
+  lab: "Head of Doe Lab"
+  school: "School of Engineering, HES-SO Valais-Wallis"
+  email: "jane.doe@hes-so.ch"
+  phone: "+41 58 606 XX YY"
+
+# ---- Signature (optional) ----
+# signature: "Dr. Jane Doe"
+# endorser: "Dr. Alex Supervisor"
+
+# ---- Letter body (raw LaTeX) ----
+body: |
+  This is the first paragraph of the letter. Replace this with your actual content.
+
+  This is the second paragraph. You can use \textbf{LaTeX formatting} as needed.
+
+  This is the third paragraph. Add as many paragraphs as you need.
