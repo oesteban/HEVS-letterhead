@@ -2,9 +2,9 @@
 
 ## Near-term: polish what's there
 
-- **Matrix CI**: test both `language: english` and `language: french` in the
+- ~~**Matrix CI**: test both `language: english` and `language: french` in the
   workflow, plus edge cases like `show_signature: true` and endorser enabled.
-  Currently CI only exercises one configuration.
+  Currently CI only exercises one configuration.~~ **Done.**
 - **Schema documentation**: maintain a JSON Schema for `letter.yaml` to enable
   editor autocompletion and catch typos before render.
 - **Multi-letter builds**: accept a glob or list of YAML files
@@ -31,9 +31,6 @@
 
 ## Longer-term: institutional scale
 
-- **Cookiecutter / template repo**: turn this into a GitHub template repository
-  with `gh repo create --template` support. New letters get their own repo
-  (or branch) pre-populated with the structure.
 - **Web form front-end**: a simple form (e.g., Streamlit or static HTML+JS) that
   fills the YAML fields and triggers a GitHub Actions workflow via
   `workflow_dispatch`, returning the PDF as an artifact. Lowers the barrier for

@@ -1,0 +1,38 @@
+language: french
+show_isc_logo: true
+show_signature: false
+city: Sion
+
+title:
+  en: "Letter title"
+  fr: "Titre de la lettre"
+
+subtitle:
+  en: "Subject of the letter in English"
+  fr: "Sujet de la lettre en français"
+
+greeting:
+  en: "Dear Committee Members,"
+  fr: "Chers membres du comité,"
+
+closing:
+  en: "Sincerely,"
+  fr: "Sincèrement,"
+
+recipient:
+  name: "Nom du destinataire"
+  title: "Titre du destinataire"
+  address_line1: "Institution du destinataire"
+  address_line2: "Adresse du destinataire"
+  email: "destinataire@example.com"
+
+sender:
+  name: "Jane Doe, PhD"
+  title: "Professeure associée"
+  lab: "Responsable du Doe Lab"
+  school: "Haute école d'ingénierie, HES-SO Valais-Wallis"
+  email: "jane.doe@hes-so.ch"
+  phone: "+41 58 606 XX YY"
+
+body: |
+  Ceci est une lettre de test en français avec les paramètres par défaut.

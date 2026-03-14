@@ -1,0 +1,47 @@
+language: english
+show_isc_logo: false
+show_signature: false
+city: Lausanne
+date_iso: "2025-07-29"
+
+title:
+  en: "Letter of endorsement"
+  fr: "Lettre de soutien"
+
+subtitle:
+  en: "RE: Grant Application 2025-XYZ"
+  fr: "Objet : Demande de subvention 2025-XYZ"
+
+greeting:
+  en: "Dear Review Panel,"
+  fr: "Chers membres du jury,"
+
+closing:
+  en: "With our full support,"
+  fr: "Avec tout notre soutien,"
+
+endorsement_label:
+  en: "Approved and endorsed by:"
+  fr: "Approuvé et validé par :"
+
+recipient:
+  name: "Grant Review Board"
+  title: "National Science Foundation"
+  address_line1: "Wildhainweg 3"
+  address_line2: "3001 Bern, Switzerland"
+  email: "grants@snf.ch"
+
+sender:
+  name: "Jane Doe, PhD"
+  title: "Associate Professor"
+  lab: "Head of Doe Lab"
+  school: "School of Engineering, HES-SO Valais-Wallis"
+  email: "jane.doe@hes-so.ch"
+  phone: "+41 58 606 XX YY"
+
+signature: "Prof. Jane Doe"
+endorser: "Prof. Alex Supervisor"
+
+body: |
+  This letter tests the endorser and dual-signature layout,
+  a fixed date, ISC logo disabled, and a non-default city.
