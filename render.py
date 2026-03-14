@@ -28,9 +28,16 @@ DEFAULTS = {
 }
 
 
+REQUIRED = ("language", "recipient", "sender", "body")
+
+
 def main():
     yaml_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("letter.yaml")
     data = yaml.safe_load(yaml_path.read_text())
+
+    missing = [k for k in REQUIRED if k not in data]
+    if missing:
+        raise SystemExit(f"Missing required fields in {yaml_path}: {', '.join(missing)}")
 
     # Merge defaults (shallow, then nested dicts)
     context = {**DEFAULTS, **data}
