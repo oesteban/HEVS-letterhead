@@ -73,7 +73,11 @@
 \ifstrequal{\documentlanguage}{en}{\def\documentlanguage{english}}{}
 \ifstrequal{\documentlanguage}{fr}{\def\documentlanguage{french}}{}
 \setdefaultlanguage{\documentlanguage}
+<% if language == "french" %>
+\setotherlanguage{english}
+<% else %>
 \setotherlanguage{french}
+<% endif %>
 
 \usepackage[useregional]{datetime2}
 
