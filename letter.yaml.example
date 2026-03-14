@@ -7,6 +7,11 @@ show_signature: false      # Include signature.png (place file in project root)
 # date_iso: "2025-07-29"   # Omit to use today's date
 city: Sion
 
+# ---- PDF metadata (optional) ----
+# pdf_author: "Jane Doe"
+# pdf_title: "Letter title"
+# pdf_subject: "Letter subject"
+
 # ---- Localized strings (provide both en and fr) ----
 title:
   en: "Letter title"
@@ -24,7 +29,7 @@ closing:
   en: "Sincerely,"
   fr: "Sincèrement,"
 
-# endorsement_label:          # Uncomment to override defaults
+# endorsement_label:          # Uncomment to add endorsement
 #   en: "Approved and endorsed by:"
 #   fr: "Approuvé et validé par :"
 

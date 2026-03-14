@@ -14,9 +14,16 @@ DEFAULTS = {
     "signature": "",
     "endorser": "",
     "city": "Sion",
+    "pdf_author": "",
+    "pdf_title": "",
+    "pdf_subject": "",
+    "title": {"en": "", "fr": ""},
+    "subtitle": {"en": "", "fr": ""},
+    "greeting": {"en": "", "fr": ""},
+    "closing": {"en": "", "fr": ""},
     "endorsement_label": {
-        "en": "Approved and endorsed by:",
-        "fr": "Approuvé et validé par :",
+        "en": "",
+        "fr": "",
     },
 }
 

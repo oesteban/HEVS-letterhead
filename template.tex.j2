@@ -82,6 +82,15 @@
   linkcolor=pink_hei,
   urlcolor=pink_hei,
   linkbordercolor=pink_hei,
+<% if pdf_author %>
+  pdfauthor={<< pdf_author >>},
+<% endif %>
+<% if pdf_title %>
+  pdftitle={<< pdf_title >>},
+<% endif %>
+<% if pdf_subject %>
+  pdfsubject={<< pdf_subject >>},
+<% endif %>
 }
 
 \usepackage{fancyhdr} % Required for customizing headers and footers
@@ -131,7 +140,7 @@
 \fontsize{7}{7.2}\selectfont
 \begin{tabular*}{\textwidth}{@{}p{0.5\textwidth}@{\extracolsep{\fill}}r@{}}
 \textcolor{gray}{
-  \textbf{HES-SO Valais-Wallis} \textbullet\ rue de l'Industrie 23 \textbullet\ 1950 Sion \newline 
+  \textbf{HES-SO Valais-Wallis} \textbullet\ rue de l'Industrie 23 \textbullet\ 1950 Sion \newline
   +41 58 606 85 23 \textbullet\ hei@hevs.ch \textbullet\ www.hevs.ch/hei
 } &
 \adjustbox{valign=c}{\includegraphics[width=4cm,keepaspectratio]{letterhead/swissuniversities_logo_gray}}%
@@ -261,16 +270,28 @@
 <% if date_iso %>
 \LetterDateISO{<< date_iso >>}
 <% endif %>
+<% if title.en %>
 \LetterTitle[en]{<< title.en >>}
+<% endif %>
+<% if title.fr %>
 \LetterTitle[fr]{<< title.fr >>}
+<% endif %>
+<% if subtitle.en %>
 \LetterSubtitle[en]{<< subtitle.en >>}
+<% endif %>
+<% if subtitle.fr %>
 \LetterSubtitle[fr]{<< subtitle.fr >>}
+<% endif %>
 \Greeting[en]{<< greeting.en >>}
 \Greeting[fr]{<< greeting.fr >>}
 \Closing[en]{<< closing.en >>}
 \Closing[fr]{<< closing.fr >>}
+<% if endorsement_label.en %>
 \EndorsementLabel[en]{<< endorsement_label.en >>}
+<% endif %>
+<% if endorsement_label.fr %>
 \EndorsementLabel[fr]{<< endorsement_label.fr >>}
+<% endif %>
 
 \LetterRecipient{<< recipient.name >>}
 \LetterRecipientTitle{<< recipient.title >>}
@@ -303,7 +324,7 @@
 %	YOUR NAME AND CONTACT INFORMATION
 %----------------------------------------------------------------------------------------
 
-\begin{adjustwidth}{11cm}{0.0cm}
+\begin{adjustwidth}{9.5cm}{0.0cm}
 \ifstrempty{\LetterRecipientValue}{}{\textbf{\LetterRecipientValue} \\}
 \fontsize{9}{8.5}\selectfont
 \ifstrempty{\LetterRecipientTitleValue}{}{\LetterRecipientTitleValue \\}
@@ -347,25 +368,25 @@
 \showsignaturefalse
 <% endif %>
 
-\ifstrempty{\LetterEndorserValue}{%
-  \ifshowsignature
-    \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png} \\}{}
-  \fi
-  \ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}%
-}{%
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
-    \begin{minipage}[t]{0.45\textwidth}
-      \ifshowsignature
-        \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png}}{}
-      \fi
-      \ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}
-    \end{minipage}
-    &
-    \begin{minipage}[t]{0.45\textwidth}
-      \IfLocalizedStringDefined{EndorsementLabel}{\EndorsementLabel \\}{}
-      \LetterEndorserValue
-    \end{minipage}
-  \end{tabular*}
-}
+<% if endorser %>
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+  \begin{minipage}[t]{0.45\textwidth}
+    \ifshowsignature
+      \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png}}{}
+    \fi
+    \ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}
+  \end{minipage}
+  &
+  \begin{minipage}[t]{0.45\textwidth}
+    \IfLocalizedStringDefined{EndorsementLabel}{\EndorsementLabel \\}{}
+    \LetterEndorserValue
+  \end{minipage}
+\end{tabular*}
+<% else %>
+\ifshowsignature
+  \IfFileExists{signature.png}{\includegraphics[width=2.5cm]{signature.png} \\}{}
+\fi
+\ifstrempty{\LetterSignatureValue}{}{\LetterSignatureValue}%
+<% endif %>
 
 \end{document}
