@@ -34,14 +34,8 @@ jobs:
       - name: Prepare letter data
         run: cp letter.yaml.example letter.yaml
 
-      - name: Render letter
-        run: pixi run render
-
-      - name: Lint with chktex
-        run: pixi run lint
-
-      - name: Build PDF
-        run: pixi run build
+      - name: Render, lint, and build PDF
+        run: pixi run all
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
