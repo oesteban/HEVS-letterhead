@@ -10,7 +10,7 @@ pyyaml = "*"
 
 [tasks]
 render = "python render.py"
-lint = { cmd = "chktex -q -n1 -n2 -n8 -n24 -n26 letter.tex", depends-on = ["render"] }
+lint = { cmd = "chktex -q -n1 -n2 -n8 -n12 -n13 -n24 -n26 letter.tex", depends-on = ["render"] }
 build = { cmd = "latexmk -xelatex letter.tex", depends-on = ["render"] }
 clean = "latexmk -C letter.tex; rm -f letter.tex"
 all = { depends-on = ["lint", "build"] }
